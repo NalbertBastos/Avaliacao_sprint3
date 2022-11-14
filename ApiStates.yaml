@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info: 
+  title: API de Cadastro de Estados
+  description: API para controlar entrada de estados e regiões com numero de população e o tamanho area que o estado ocupa.
+  version: 0.0.2
+  contact: 
+    name: Suporte Devs
+    email: nalbertbastos@outlook.com
+  license:
+    name: "Licença: GPLv3"
+    url: https://www.gnu.org/license/gpl-3.0.html
+severs: 
+- url: http://localhost:8080/api/states/
+  description: API de Avaliação
+paths: 
+   /api/states/:
+    get:
+      summary: recupera todas os estados cadastrados
+      responses:
+        200:
+          description: Sucesso
+          content: 
+            application/json: 
+              schema: 
+                $ref: "#/components/schemas/Estados"
+    post: 
+      summary: Cria uma Nova especialidade
+      requestBody:
+        content:
+          appliction/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: "Sucesso"
+          content:
+            appliction/json:
+              schema:
+                $ref: "#/components/schemas/Estados"
+   /api/states/{id}:
+    parameters:
+    - name: id
+      in: path
+      schema:
+        type: integer
+      required: true
+    get:
+      summary: Recupera uma entidade pelo ID
+      responses: 
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Estados"
+        404:
+          description: Estado não encontrado
+    delete:
+      summary: Apaga um objeto da lista
+      description: Apaga um objeto da lista
+      responses:
+        201:
+          description: "Sucesso"
+          content:
+            appliction/json:
+              schema:
+                $ref: "#/components/schemas/Estados"
+    put:
+      summary: Atualiza uma entidade pelo ID
+      responses: 
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Estados"
+        404:
+          description: Estado não encontrado
+components:
+  schemas:
+    Estados:
+      type: object
+      properties:
+        id: 
+          type: integer
+        nome: 
+          type: string
+        capital:
+          type: string
+        regiao:
+          type: string
+        populacao:
+          type: integer
+        area:
+          type: integer
+    Estado: 
+      type: array
+      items:
+        $ref: "#/components/schemas/Estados"
+  securitySchemes:
+    outh:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+      
+  
